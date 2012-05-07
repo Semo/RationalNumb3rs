@@ -96,4 +96,17 @@ bool RationalNumber::operator<(const RationalNumber &rightSide){
     return false;
 }
 
+bool RationalNumber::operator>(const RationalNumber &rightSide) {
+    if(!this->operator <(rightSide)) return true;
+    return false;
+}
 
+bool RationalNumber::operator<=(const RationalNumber &rightSide){
+    if(this->operator <(rightSide) || this->operator ==(rightSide)) return true;
+    return false;
+}
+
+bool RationalNumber::operator>=(const RationalNumber &rightSide){
+    if(this->operator >(rightSide) || this->operator ==(rightSide)) return true;
+    return false;
+}

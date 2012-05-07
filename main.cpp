@@ -22,7 +22,11 @@ int main()
     assert(r2 == a-b);
     assert(r3 == a*b);
     assert(r4 == a/b);
-    assert(a < b);
+    assert(b > a);
+    assert(b>=b);
+    assert(b>=a);
+    assert(b<=b);
+    assert(a<=b);
     cout << "Hello World!" << endl;
     return 0;
 }

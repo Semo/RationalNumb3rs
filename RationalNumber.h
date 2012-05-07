@@ -17,6 +17,9 @@ public:
     RationalNumber& operator/(const RationalNumber &rightSide);
     bool operator==(const RationalNumber &rightSide);
     bool operator<(const RationalNumber &rightSide);
+    bool operator>(const RationalNumber &rightSide);
+    bool operator<=(const RationalNumber &rightSide);
+    bool operator>=(const RationalNumber &rightSide);
 
     bool rnIsValid(const RationalNumber &n);
     bool rnIsNaN(const RationalNumber &n);
