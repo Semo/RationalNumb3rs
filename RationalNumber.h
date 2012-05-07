@@ -11,24 +11,28 @@ public:
     ~RationalNumber();
 
     // Operatorenüberladung
-    RationalNumber& operator+(const RationalNumber &rightSide);
-    RationalNumber& operator-(const RationalNumber &rightSide);
-    RationalNumber& operator*(const RationalNumber &rightSide);
-    RationalNumber& operator/(const RationalNumber &rightSide);
-    bool operator==(const RationalNumber &rightSide);
-    bool operator<(const RationalNumber &rightSide);
-    bool operator>(const RationalNumber &rightSide);
-    bool operator<=(const RationalNumber &rightSide);
-    bool operator>=(const RationalNumber &rightSide);
+    RationalNumber operator+(const RationalNumber &rightSide) const;
+    RationalNumber operator-(const RationalNumber &rightSide) const;
+    RationalNumber operator*(const RationalNumber &rightSide) const;
+    RationalNumber operator/(const RationalNumber &rightSide) const;
+    bool operator==(const RationalNumber &rightSide) const;
+    bool operator<(const RationalNumber &rightSide) const;
+    bool operator>(const RationalNumber &rightSide) const;
+    bool operator<=(const RationalNumber &rightSide) const;
+    bool operator>=(const RationalNumber &rightSide) const;
 
-    bool rnIsValid(const RationalNumber &n);
-    bool rnIsNaN(const RationalNumber &n);
+//    void operator-(const RationalNumber &rightSide) const;
 
-private:
+    bool rnIsValid(const RationalNumber &n) const;
+    bool rnIsNaN(const RationalNumber &n)const;
+
     int m_nominator;
     int m_denominator;
-    int gcd(int n1, int n2);
-    int lcd(int n1, int n2);
+
+private:
+
+    int gcd(int a, int b) const;
+    int lcm(int n1, int n2) const;
 };
 
 }
