@@ -82,18 +82,18 @@ bool RationalNumber::operator==(const RationalNumber &rightSide) {
     return false;
 }
 
-//bool rnLessThan(RationalNumber n1, RationalNumber n2){
-//    if (rnIsValid(n1) && rnIsValid(n2)) {
-//        int lcd = leastCommonMultiple(n1.denominator, n2.denominator);
-//        RationalNumber r_1 = {n1.nominator * (n1.denominator / lcd), lcd};
-//        RationalNumber r_2 = {n2.nominator * (n2.denominator / lcd), lcd};
+bool RationalNumber::operator<(const RationalNumber &rightSide){
+    if (this->rnIsValid(*this) && this->rnIsValid(rightSide)) {
+        int lcd = this->lcd(m_denominator, rightSide.m_denominator);
+        RationalNumber r_1 (m_nominator * (m_denominator / lcd), lcd);
+        RationalNumber r_2 (rightSide.m_nominator * (rightSide.m_denominator / lcd), lcd);
 
-//        if (r_1.nominator < r_2.nominator ) {
-//            return true;
-//        }
-//        return false;
-//    }
-//    return false;
-//}
+        if (r_1.m_nominator < r_2.m_nominator ) {
+            return true;
+        }
+        return false;
+    }
+    return false;
+}
 
 
