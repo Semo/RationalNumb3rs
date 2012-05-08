@@ -10,6 +10,8 @@ using namespace rnum;
 int main()
 {
 
+    cout << "Start of the Assertions..." << endl;
+
     RationalNumber a (2,3);
     RationalNumber b (5,3);
 
@@ -42,11 +44,16 @@ int main()
 
     // Hartmut's assertions!
     assert(c + d*e - f/g == testMe);
-    RationalNumber numb((-f), 1);
+    RationalNumber z(4,-2);
+    assert(-f == z);
+    //z = -f;
+    cout << z.m_nominator << endl << z.m_denominator << endl;
 
 
 
-    cout << "Hello World!" << endl;
+    cout << "All assertions returned true!" << endl;
+
+    //Should never get here...
     return 0;
 }
 

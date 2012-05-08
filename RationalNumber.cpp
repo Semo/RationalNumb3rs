@@ -21,7 +21,6 @@ int RationalNumber::gcd (int a, int b) const {
     }
 
     // iteratively calculate the remainder r = a / b,
-
     // then make a the value of b and b the remainder, ...
 
     while(b != 0) {
@@ -35,7 +34,6 @@ int RationalNumber::gcd (int a, int b) const {
     //        a = a % b;
     //        if( a == 0 )
     //            return b;
-
     //        b = b % a;
     //        if( b == 0 )
     //            return a;
@@ -126,7 +124,7 @@ bool RationalNumber::operator>=(const RationalNumber &rightSide) const{
     return false;
 }
 
-void RationalNumber::operator-(){
-    this->m_nominator = (-this->m_nominator);
+RationalNumber RationalNumber::operator-(){
+    return RationalNumber(-this->m_nominator,-this->m_denominator);
 }
 
