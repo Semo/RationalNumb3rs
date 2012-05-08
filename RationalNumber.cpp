@@ -12,6 +12,22 @@ RationalNumber::RationalNumber(int nominator, int denominator) {
 
 RationalNumber::~RationalNumber(){}
 
+int RationalNumber::nominator() {
+    return m_nominator;
+}
+
+int RationalNumber::denominator() {
+    return m_denominator;
+}
+
+void RationalNumber::nominator(int n) {
+    m_nominator = n;
+}
+
+void RationalNumber::denominator (int n) {
+    m_denominator = n;
+}
+
 int RationalNumber::gcd (int a, int b) const {
 
     // swap so that a is the number with the biggest value
@@ -73,10 +89,7 @@ RationalNumber RationalNumber::operator/(const RationalNumber &rightSide) const{
 }
 
 bool RationalNumber::rnIsValid(const RationalNumber &n) const{
-    if (n.m_denominator != 0) {
-        return true;
-    }
-    return false;
+    return n.m_denominator != 0;
 }
 
 bool RationalNumber::rnIsNaN(const RationalNumber &n) const{
@@ -89,8 +102,7 @@ bool RationalNumber::operator==(const RationalNumber &rightSide) const {
         int reducer_2 = this->gcd(rightSide.m_nominator, rightSide.m_denominator);
         RationalNumber r_1  (m_nominator / reducer_1, m_denominator / reducer_1);
         RationalNumber r_2 (rightSide.m_nominator / reducer_2, rightSide.m_denominator/ reducer_2);
-        if (r_1.m_nominator == r_2.m_nominator && r_1.m_denominator == r_2.m_denominator) return true;
-        return false;
+        return r_1.m_nominator == r_2.m_nominator && r_1.m_denominator == r_2.m_denominator;
     }
     return false;
 }
@@ -100,31 +112,24 @@ bool RationalNumber::operator<(const RationalNumber &rightSide) const{
         int lcd = this->lcm(m_denominator, rightSide.m_denominator);
         RationalNumber r_1 (m_nominator * (m_denominator / lcd), lcd);
         RationalNumber r_2 (rightSide.m_nominator * (rightSide.m_denominator / lcd), lcd);
-
-        if (r_1.m_nominator < r_2.m_nominator ) {
-            return true;
-        }
-        return false;
+        return r_1.m_nominator < r_2.m_nominator;
     }
     return false;
 }
 
 bool RationalNumber::operator>(const RationalNumber &rightSide) const{
-    if(!this->operator <(rightSide)) return true;
-    return false;
+    return !this->operator <(rightSide);
 }
 
 bool RationalNumber::operator<=(const RationalNumber &rightSide) const{
-    if(this->operator <(rightSide) || this->operator ==(rightSide)) return true;
-    return false;
+    return this->operator <(rightSide) || this->operator ==(rightSide);
 }
 
 bool RationalNumber::operator>=(const RationalNumber &rightSide) const{
-    if(this->operator >(rightSide) || this->operator ==(rightSide)) return true;
-    return false;
+    return this->operator >(rightSide) || this->operator ==(rightSide);
 }
 
 RationalNumber RationalNumber::operator-(){
-    return RationalNumber(-this->m_nominator,-this->m_denominator);
+    return RationalNumber(-nominator (),-denominator ());
 }
 

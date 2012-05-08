@@ -46,8 +46,8 @@ int main()
     assert(c + d*e - f/g == testMe);
     RationalNumber z(4,-2);
     assert(-f == z);
-    //z = -f;
-    cout << z.m_nominator << endl << z.m_denominator << endl;
+
+    cout << z.nominator () << endl << z.denominator () << endl;
 
 
 
