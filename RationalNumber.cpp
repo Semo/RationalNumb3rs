@@ -31,15 +31,15 @@ int RationalNumber::gcd (int a, int b) const {
     }
     return a;
 
-//    while(true) {
-//        a = a % b;
-//        if( a == 0 )
-//            return b;
+    //    while(true) {
+    //        a = a % b;
+    //        if( a == 0 )
+    //            return b;
 
-//        b = b % a;
-//        if( b == 0 )
-//            return a;
-//    }
+    //        b = b % a;
+    //        if( b == 0 )
+    //            return a;
+    //    }
 }
 
 int RationalNumber::lcm (int a, int b) const {
@@ -54,12 +54,6 @@ RationalNumber RationalNumber::operator+(const RationalNumber &rightSide) const{
 
     return RationalNumber (r.m_nominator/pirates, r.m_denominator/pirates);
 }
-
-//void RationalNumber::operator-(const RationalNumber &rightSide) const {
-//    this->RationalNumber.m_nominator *= -1;
-//}
-
-
 
 RationalNumber RationalNumber::operator-(const RationalNumber &rightSide) const{
     RationalNumber r_1  (m_nominator * rightSide.m_denominator, m_denominator * rightSide.m_denominator);
@@ -131,3 +125,8 @@ bool RationalNumber::operator>=(const RationalNumber &rightSide) const{
     if(this->operator >(rightSide) || this->operator ==(rightSide)) return true;
     return false;
 }
+
+void RationalNumber::operator-(){
+    this->m_nominator = (-this->m_nominator);
+}
+

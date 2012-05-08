@@ -18,6 +18,7 @@ int main()
     RationalNumber testMe(40,17);
     RationalNumber testMeToo(-59,12);
     RationalNumber foo(3,4);
+    RationalNumber bar(4,2);
 
     RationalNumber r1 (7,3);
     RationalNumber r2 (-3,3);
@@ -39,12 +40,9 @@ int main()
     RationalNumber r_temp = ((d+d)/d);
     RationalNumber r = d+d-d;
 
-    cout << r.m_nominator << endl << r.m_denominator << endl;
-
-
-    // Hartmut's assertions > Killer Assertion!
+    // Hartmut's assertions!
     assert(c + d*e - f/g == testMe);
-//    assert(-f + foo == testMeToo);
+    RationalNumber numb((-f), 1);
 
 
 
