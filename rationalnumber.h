@@ -15,9 +15,8 @@ public:
     int denominator();
 
     // accessor
-     void nominator(int n);
+    void nominator(int n);
     void denominator (int n);
-
 
     // Operatorenüberladung
     RationalNumber operator+(const RationalNumber &rightSide) const;
@@ -38,7 +37,7 @@ public:
     bool rnIsValid(const RationalNumber &n) const;
     bool rnIsNaN(const RationalNumber &n)const;
 
-    private:
+private:
 
     int m_nominator;
     int m_denominator;

@@ -1,4 +1,4 @@
-#include "RationalNumber.h"
+#include "rationalnumber.h"
 #include <iostream>
 #include <cstdlib>
 
@@ -9,6 +9,8 @@ RationalNumber::RationalNumber(int nominator, int denominator) {
     this->m_nominator = nominator;
     this->m_denominator = denominator;
 }
+
+RationalNumber::RationalNumber() {}
 
 RationalNumber::~RationalNumber(){}
 
@@ -45,15 +47,6 @@ int RationalNumber::gcd (int a, int b) const {
         b = r;
     }
     return a;
-
-    //    while(true) {
-    //        a = a % b;
-    //        if( a == 0 )
-    //            return b;
-    //        b = b % a;
-    //        if( b == 0 )
-    //            return a;
-    //    }
 }
 
 int RationalNumber::lcm (int a, int b) const {

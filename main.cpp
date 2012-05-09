@@ -1,5 +1,5 @@
 #include <iostream>
-#include "RationalNumber.h"
+#include "rationalnumber.h"
 #include <assert.h>
 
 using namespace std;
