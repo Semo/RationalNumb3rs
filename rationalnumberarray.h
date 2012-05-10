@@ -31,24 +31,24 @@ public:
     void removeElements(const unsigned int from, const unsigned int to);
 
     // Adds a RationalNumber to the RationalNumberArray
-//    void addElements(const RationalNumber& rn);
+    void addElements(const RationalNumber& m_rn);
 
-    //    void rnaResize(const unsigned int elements);
+    // Resizes the Capacity of the RationalNumberArray to hold more RationalNumbers
+    void arrayResize(const unsigned int m_capacity);
+
+
     //    void rnaSet(const RationalNumber& rn, const unsigned int index);
     //    RationalNumber rnaGet(const unsigned int index);
     //    void rnaPrint();
     //    unsigned int rnaError();
 
-    // accessors
-    //    unsigned int capacity() const { return capacity; }
-    //    unsigned int size() const { return size; }
-
-
 private:
-    RationalNumber *rn;
     unsigned int RATIONALNUMBERARRAY_DEFAULT_SIZE;
-    unsigned int capacity;
-    unsigned int size;
+
+    RationalNumber *m_rn;
+
+    unsigned int m_capacity;
+    unsigned int m_size;
 };
 }
 #endif // RATIONALNUMBERARRAY_H
