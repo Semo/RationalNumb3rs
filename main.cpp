@@ -62,7 +62,7 @@ int main()
 
     // Part Two _ Reassurection
 
-    RationalNumberArray rna (20);
+    RationalNumberArray rna (2);
     // Test of Adding RationalNumbers
     rna.add (a);
     rna.add (b);
@@ -83,19 +83,23 @@ int main()
     rna.insert (g,1);
     rna.print ();
 
-
+     cout << "Before: rna.m_capacity: " << rna.capacity ()<< endl;
+     cout << "Before: rna.m_size: " << rna.size ()<< endl;
 
     // Test call Default Constructor...
-    RationalNumberArray rna_2 (rna);
+     rna.print ();
+     RationalNumberArray rna_2 (rna);
     rna_2.print ();
 
+    cout << "After: rna.m_capacity: " << rna.capacity ()<< endl;
+    cout << "After: rna.m_size: " << rna.size ()<< endl;
 
-//    double test = (double)a;
-//    cout << test << endl;
+
+    double test = (double)a;
+    cout << test << endl;
 
     cout << "Fin" << endl;
 
     //Should never get here...
     return 0;
 }
-

@@ -6,8 +6,6 @@ using namespace std;
 using namespace rnum;
 
 RationalNumber::RationalNumber(int nominator, int denominator): m_nominator(nominator),m_denominator(denominator) {
-/*    this->m_nominator = nominator;
-    this->m_denominator = denominator;*/
 }
 
 RationalNumber::RationalNumber() {}
@@ -164,6 +162,6 @@ RationalNumber RationalNumber::operator-(){
     return RationalNumber(-nominator (),-denominator ());
 }
 
-//RationalNumber::operator double() {
-//    return double ((double)((this->nominator ())/ (double)(this->denominator ())));
-//}
+RationalNumber::operator double() {
+    return double ((double) ((this->nominator ())/ (double)(this->denominator ())));
+}

@@ -9,20 +9,16 @@ using namespace std;
 /**
   * The Default-Constructor
   */
-RationalNumberArray::RationalNumberArray(){
-    RATIONALNUMBERARRAY_DEFAULT_SIZE = 12;
-    m_rn = new RationalNumber[RATIONALNUMBERARRAY_DEFAULT_SIZE];
-    this->m_capacity = RATIONALNUMBERARRAY_DEFAULT_SIZE;
-    this->m_size = 0;
+RationalNumberArray::RationalNumberArray(): m_capacity(12), m_size(0){
+    m_rn = new RationalNumber[this->m_capacity];
 }
 
 /**
   * Creates Constructor of Capacity x.
   */
-RationalNumberArray::RationalNumberArray(unsigned int cap){
+RationalNumberArray::RationalNumberArray(unsigned int cap): m_size(0) {
     m_rn = new RationalNumber[cap];
     this->m_capacity = cap;
-    this->m_size = 0;
 }
 
 /**
@@ -35,9 +31,11 @@ RationalNumberArray::~RationalNumberArray(){
 /**
   * Copy Constructor
   */
-RationalNumberArray::RationalNumberArray(RationalNumberArray &r){
-    this->resize (r.capacity ());
+RationalNumberArray::RationalNumberArray(RationalNumberArray &r): m_size(0){
+
+    m_rn = new RationalNumber[r.capacity ()];
     this->m_size = r.size ();
+    this->m_capacity = r.capacity ();
 
     for (unsigned int i = 0; i < m_size; ++i) {
         this->m_rn[i] = r.m_rn[i];
@@ -85,7 +83,7 @@ void RationalNumberArray::add(const RationalNumber& rn){
         resize(2 * capacity() + 2);
     }
     this->m_rn[size ()] = rn;
-    this->m_size += 1;
+    this->m_size++;
 
 }
 
@@ -96,16 +94,16 @@ void RationalNumberArray::add(const RationalNumber& rn){
 void RationalNumberArray::resize(const unsigned int capacity){
     RationalNumber* rn_temp = new RationalNumber[capacity];
 
+    cout << capacity<< endl;
+
     //Set new Capacity
     m_capacity = capacity;
-
 
     //Copy old RationalNumbers to new Array of RationalNumbers.
     for (unsigned int i = 0; i < this->m_size; ++i) {
         rn_temp[i] = this->m_rn[i];
     }
-    //    delete[] m_rn;
-    //m_rn = 0;
+    delete[] m_rn;
 
     // Replace ye olde Array of RationalNumber
     m_rn = rn_temp;
@@ -153,4 +151,3 @@ void RationalNumberArray::print(){
     }
     cout << endl;
 }
-

@@ -36,7 +36,7 @@ public:
     // Resizes the Capacity of the RationalNumberArray to hold more RationalNumbers
     void resize(const unsigned int m_capacity);
 
-    // Gets a RationalNumber specified by Index
+    // Gets a RationalNumber specified by Index8765
     RationalNumber getRationalNumber(const unsigned int index);
 
     // Inserts a RationalNumber element at position called index.
