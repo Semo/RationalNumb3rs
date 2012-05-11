@@ -5,9 +5,9 @@
 using namespace std;
 using namespace rnum;
 
-RationalNumber::RationalNumber(int nominator, int denominator) {
-    this->m_nominator = nominator;
-    this->m_denominator = denominator;
+RationalNumber::RationalNumber(int nominator, int denominator): m_nominator(nominator),m_denominator(denominator) {
+/*    this->m_nominator = nominator;
+    this->m_denominator = denominator;*/
 }
 
 RationalNumber::RationalNumber() {}

@@ -21,7 +21,7 @@ RationalNumberArray::RationalNumberArray(){
   */
 RationalNumberArray::RationalNumberArray(unsigned int cap){
     m_rn = new RationalNumber[cap];
-    this->m_capacity = ++cap;
+    this->m_capacity = cap;
     this->m_size = 0;
 }
 
@@ -36,6 +36,7 @@ RationalNumberArray::~RationalNumberArray(){
   * Copy Constructor
   */
 RationalNumberArray::RationalNumberArray(const RationalNumberArray& r){
+
     for (unsigned int i = 0; i < r.m_size; ++i) {
         this->m_rn[i] = r.m_rn[i];
     }
@@ -44,30 +45,28 @@ RationalNumberArray::RationalNumberArray(const RationalNumberArray& r){
 /**
   * Return the amount of RationalNumbers a RationalNumberArray contains.
   */
-unsigned int RationalNumberArray::arraySize(){
+unsigned int RationalNumberArray::size(){
     return this->m_size;
 }
 
 /**
   * Returns the possible amount of RationalNumbers which can be stored inside.
   */
-unsigned int RationalNumberArray::arrayCapacity(){
+unsigned int RationalNumberArray::capacity(){
     return this->m_capacity;
 }
 
 /**
   * Removes RationalNumbers regarding the correct order in a RationalNumberArray.
   */
-void RationalNumberArray::removeElements(const unsigned int from, const unsigned int to){
+void RationalNumberArray::remove(const unsigned int from, const unsigned int to){
     if (from < to) {
-        if(!(to <= this->arraySize ())){
+        if(!(to <= this->size ())){
             cout << "index out of bounds" << endl;
         } else {
             int offset = to - from;
-            this->m_capacity -= offset;
-
-            for (unsigned int i = from; i <= this->arraySize(); ++i) {
-                if(i+offset < this->arraySize()) {
+            for (unsigned int i = from; i <= this->size(); ++i) {
+                if(i+offset < this->size()) {
                     this->m_rn[i] = this->m_rn[i+offset];
                 }
             }
@@ -79,33 +78,75 @@ void RationalNumberArray::removeElements(const unsigned int from, const unsigned
 /**
   * Adds a RationalNumber to the RationalNumberArray
   */
-void RationalNumberArray::addElements(const RationalNumber& rn){
-    if((arraySize() + 1) > arrayCapacity())  {
-        arrayResize(2 * arrayCapacity() + 2);
-    } else {
-        this->m_rn[arraySize() + sizeof(this->m_rn)] = rn;
-        this->m_size += 1;
+void RationalNumberArray::add(const RationalNumber& rn){
+    if((size() + 1) > capacity())  {
+        resize(2 * capacity() + 2);
     }
+    this->m_rn[size ()] = rn;
+    this->m_size += 1;
+
 }
 
 /**
   * Resizes the Array of RationalNumbers.
   */
 
-void RationalNumberArray::arrayResize(const unsigned int capacity){
+void RationalNumberArray::resize(const unsigned int capacity){
 
-    //Allocate new Array for RationalNumbers with malloc
-    RationalNumber* temp = (RationalNumber*) malloc(sizeof(this->m_rn) + capacity * sizeof(RationalNumber));
+    RationalNumber* rn_temp = new RationalNumber[capacity];
 
     //Set new Capacity
     this->m_capacity = capacity;
 
     //Copy old RationalNumbers to new Array of RationalNumbers.
     for (unsigned int i = 0; i < this->m_size; ++i) {
-        temp[i] = this->m_rn[i];
+        rn_temp[i] = this->m_rn[i];
     }
 
+    delete[] this->m_rn;
     // Replace ye olde Array of RationalNumber
-    this->m_rn = temp;
+    this->m_rn = rn_temp;
+}
+
+/**
+  * Gets a RationalNumber specified by Index
+  */
+RationalNumber RationalNumberArray::getRationalNumber(const unsigned int index){
+    return this->m_rn[index];
+}
+
+/**
+  * Inserts a RationalNumber element at position called index.
+  */
+void RationalNumberArray::insert(const RationalNumber& rn, const unsigned int index){
+    if(index > size()) {
+        // fill not initialised Fields with {0,1}
+        RationalNumber def (0,1);
+        // filling cup
+        for(unsigned int j = size(); j < index; ++j) {
+            add(def);
+        }
+        this->m_rn[index] = rn;
+    } else {
+        if(size() + 1 > capacity()) {
+            resize(2* capacity() + 2);
+        }
+        for(unsigned int i = size() + 1 ; i > index; --i) {
+            this->m_rn[i] = this->m_rn[i-1];
+        }
+        this->m_rn[index] = rn;
+    }
+    this->m_size += 1;
+
+}
+
+/**
+  * Prints beautified RationalNumbers containes in the RationalNumberArray.
+  */
+void RationalNumberArray::print(){
+    for (unsigned int i = 0; i < capacity(); ++i) {
+        cout << "{" << this->m_rn[i].nominator() << "/" << this->m_rn[i].denominator() << "} ";
+    }
+    cout << endl;
 }
 

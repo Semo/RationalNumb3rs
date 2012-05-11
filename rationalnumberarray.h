@@ -22,24 +22,29 @@ public:
     ~RationalNumberArray();
 
     // Get amount of elements contained in a List
-    unsigned int arraySize();
+    unsigned int size();
 
     // Returns the possible amount of RationalNumbers which can be stored inside.
-    unsigned int arrayCapacity();
+    unsigned int capacity();
 
     // Removes RationalNumbers regarding the correct order in a RationalNumberArray.
-    void removeElements(const unsigned int from, const unsigned int to);
+    void remove(const unsigned int from, const unsigned int to);
 
     // Adds a RationalNumber to the RationalNumberArray
-    void addElements(const RationalNumber& m_rn);
+    void add(const RationalNumber& m_rn);
 
     // Resizes the Capacity of the RationalNumberArray to hold more RationalNumbers
-    void arrayResize(const unsigned int m_capacity);
+    void resize(const unsigned int m_capacity);
 
+    // Gets a RationalNumber specified by Index
+    RationalNumber getRationalNumber(const unsigned int index);
 
-    //    void rnaSet(const RationalNumber& rn, const unsigned int index);
-    //    RationalNumber rnaGet(const unsigned int index);
-    //    void rnaPrint();
+    // Inserts a RationalNumber element at position called index.
+    void insert(const RationalNumber& rn, const unsigned int index);
+
+    // Prints beautified RationalNumbers containes in the RationalNumberArray.
+    void print();
+
     //    unsigned int rnaError();
 
 private:
