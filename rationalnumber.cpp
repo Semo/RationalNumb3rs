@@ -54,30 +54,47 @@ int RationalNumber::lcm (int a, int b) const {
 }
 
 RationalNumber RationalNumber::operator+(const RationalNumber &rightSide) const{
-    RationalNumber r_1  (m_nominator * rightSide.m_denominator, m_denominator * rightSide.m_denominator);
-    RationalNumber r_2  (rightSide.m_nominator * m_denominator, m_denominator * rightSide.m_denominator);
-    RationalNumber r  (r_1.m_nominator + r_2.m_nominator, m_denominator * rightSide.m_denominator);
-    int pirates = gcd(r.m_nominator, r.m_denominator);
-
-    return RationalNumber (r.m_nominator/pirates, r.m_denominator/pirates);
+    return add(*this,rightSide);
 }
 
 RationalNumber RationalNumber::operator-(const RationalNumber &rightSide) const{
-    RationalNumber r_1  (m_nominator * rightSide.m_denominator, m_denominator * rightSide.m_denominator);
-    RationalNumber r_2  (rightSide.m_nominator * m_denominator, m_denominator * rightSide.m_denominator);
-    RationalNumber r  (r_1.m_nominator - r_2.m_nominator, m_denominator * rightSide.m_denominator);
+    return sub(*this,rightSide);
+}
+
+RationalNumber RationalNumber::operator*(const RationalNumber &rightSide) const{
+    return mult(*this,rightSide);
+}
+
+RationalNumber RationalNumber::operator/(const RationalNumber &rightSide) const{
+    return div(*this,rightSide);
+}
+
+RationalNumber RationalNumber::add(const RationalNumber &ls,const RationalNumber &rhs) const {
+
+    RationalNumber r_1  (ls.m_nominator * rhs.m_denominator, ls.m_denominator * rhs.m_denominator);
+    RationalNumber r_2  (rhs.m_nominator * ls.m_denominator, ls.m_denominator * rhs.m_denominator);
+    RationalNumber r  (r_1.m_nominator + r_2.m_nominator, ls.m_denominator * rhs.m_denominator);
     int pirates = gcd(r.m_nominator, r.m_denominator);
 
     return RationalNumber (r.m_nominator/pirates, r.m_denominator/pirates);
 }
+RationalNumber RationalNumber::sub(const RationalNumber &ls,const RationalNumber &rhs) const {
 
-RationalNumber RationalNumber::operator*(const RationalNumber &rightSide) const{
-    RationalNumber r (m_nominator * rightSide.m_nominator, m_denominator * rightSide.m_denominator);
+    RationalNumber r_1  (ls.m_nominator * rhs.m_denominator, ls.m_denominator * rhs.m_denominator);
+    RationalNumber r_2  (rhs.m_nominator * ls.m_denominator, ls.m_denominator * rhs.m_denominator);
+    RationalNumber r  (r_1.m_nominator - r_2.m_nominator, ls.m_denominator * rhs.m_denominator);
+    int pirates = gcd(r.m_nominator, r.m_denominator);
+
+    return RationalNumber (r.m_nominator/pirates, r.m_denominator/pirates);
+}
+RationalNumber RationalNumber::mult(const RationalNumber &ls,const RationalNumber &rhs) const {
+
+    RationalNumber r (ls.m_nominator * rhs.m_nominator, ls.m_denominator * rhs.m_denominator);
     return r;
 }
+RationalNumber RationalNumber::div(const RationalNumber &ls,const RationalNumber &rhs) const {
 
-RationalNumber RationalNumber::operator/(const RationalNumber &rightSide) const{
-    RationalNumber r (m_nominator*rightSide.m_denominator, m_denominator * rightSide.m_nominator);
+    RationalNumber r (ls.m_nominator * rhs.m_denominator, ls.m_denominator * rhs.m_nominator);
     return r;
 }
 

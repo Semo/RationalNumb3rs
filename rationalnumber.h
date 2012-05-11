@@ -24,6 +24,11 @@ public:
     RationalNumber operator*(const RationalNumber &rightSide) const;
     RationalNumber operator/(const RationalNumber &rightSide) const;
 
+    RationalNumber add(const RationalNumber &lhs,const RationalNumber &rhs) const;
+    RationalNumber sub(const RationalNumber &lhs,const RationalNumber &rhs) const;
+    RationalNumber mult(const RationalNumber &lhs,const RationalNumber &rhs) const;
+    RationalNumber div(const RationalNumber &lhs,const RationalNumber &rhs) const;
+
     //Boolsche Operatorenüberladung
     bool operator==(const RationalNumber &rightSide) const;
     bool operator<(const RationalNumber &rightSide) const;
