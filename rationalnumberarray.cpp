@@ -97,6 +97,7 @@ void RationalNumberArray::resize(const unsigned int capacity){
     RationalNumber* rn_temp = new RationalNumber[capacity];
 
     //Set new Capacity
+    m_capacity = capacity;
 
 
     //Copy old RationalNumbers to new Array of RationalNumbers.
@@ -104,9 +105,8 @@ void RationalNumberArray::resize(const unsigned int capacity){
         rn_temp[i] = this->m_rn[i];
     }
     //    delete[] m_rn;
-    m_rn = 0;
+    //m_rn = 0;
 
-    m_capacity = capacity;
     // Replace ye olde Array of RationalNumber
     m_rn = rn_temp;
 

@@ -31,7 +31,7 @@ public:
     RationalNumber operator/(const int &rightSide) const;
 
     // Type-Overloading
-    operator  double() ;
+//    operator  double() ;
 
 
     RationalNumber add(const RationalNumber &lhs,const RationalNumber &rhs) const;

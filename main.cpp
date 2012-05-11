@@ -62,7 +62,7 @@ int main()
 
     // Part Two _ Reassurection
 
-    RationalNumberArray rna (2);
+    RationalNumberArray rna (20);
     // Test of Adding RationalNumbers
     rna.add (a);
     rna.add (b);
@@ -87,13 +87,11 @@ int main()
 
     // Test call Default Constructor...
     RationalNumberArray rna_2 (rna);
-
-
     rna_2.print ();
 
 
-    double test = (double)a;
-    cout << test << endl;
+//    double test = (double)a;
+//    cout << test << endl;
 
     cout << "Fin" << endl;
 

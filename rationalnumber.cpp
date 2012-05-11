@@ -164,7 +164,6 @@ RationalNumber RationalNumber::operator-(){
     return RationalNumber(-nominator (),-denominator ());
 }
 
-RationalNumber::operator double() {
-    return double ((double)((this->nominator ())/ (double)(this->denominator ())));
-
-}
+//RationalNumber::operator double() {
+//    return double ((double)((this->nominator ())/ (double)(this->denominator ())));
+//}
