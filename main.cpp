@@ -74,8 +74,16 @@ int main()
     rna.print ();
 
     // Test call Default Constructor...
-    RationalNumberArray rna_2;
-    rna_2 = rna;
+    RationalNumberArray rna_2 (rna);
+
+
+
+
+
+
+
+
+
     rna_2.print ();
 
 

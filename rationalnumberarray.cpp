@@ -35,9 +35,11 @@ RationalNumberArray::~RationalNumberArray(){
 /**
   * Copy Constructor
   */
-RationalNumberArray::RationalNumberArray(const RationalNumberArray& r){
+RationalNumberArray::RationalNumberArray(RationalNumberArray &r){
+    this->resize (r.capacity ());
+    this->m_size = r.size ();
 
-    for (unsigned int i = 0; i < r.m_size; ++i) {
+    for (unsigned int i = 0; i < m_size; ++i) {
         this->m_rn[i] = r.m_rn[i];
     }
 }
@@ -93,31 +95,37 @@ void RationalNumberArray::add(const RationalNumber& rn){
 
 void RationalNumberArray::resize(const unsigned int capacity){
 
+
+
+
     RationalNumber* rn_temp = new RationalNumber[capacity];
 
     //Set new Capacity
-    this->m_capacity = capacity;
+
 
     //Copy old RationalNumbers to new Array of RationalNumbers.
     for (unsigned int i = 0; i < this->m_size; ++i) {
         rn_temp[i] = this->m_rn[i];
     }
+    //    delete[] m_rn;
+    m_rn = 0;
 
-    delete[] this->m_rn;
+    m_capacity = capacity;
     // Replace ye olde Array of RationalNumber
-    this->m_rn = rn_temp;
+    m_rn = rn_temp;
+
 }
 
 /**
-  * Gets a RationalNumber specified by Index
-  */
+      * Gets a RationalNumber specified by Index
+      */
 RationalNumber RationalNumberArray::getRationalNumber(const unsigned int index){
     return this->m_rn[index];
 }
 
 /**
-  * Inserts a RationalNumber element at position called index.
-  */
+      * Inserts a RationalNumber element at position called index.
+      */
 void RationalNumberArray::insert(const RationalNumber& rn, const unsigned int index){
     if(index > size()) {
         // fill not initialised Fields with {0,1}
@@ -141,8 +149,8 @@ void RationalNumberArray::insert(const RationalNumber& rn, const unsigned int in
 }
 
 /**
-  * Prints beautified RationalNumbers containes in the RationalNumberArray.
-  */
+      * Prints beautified RationalNumbers containes in the RationalNumberArray.
+      */
 void RationalNumberArray::print(){
     for (unsigned int i = 0; i < capacity(); ++i) {
         cout << "{" << this->m_rn[i].nominator() << "/" << this->m_rn[i].denominator() << "} ";

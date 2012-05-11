@@ -16,7 +16,7 @@ public:
     RationalNumberArray(unsigned int cap);
 
     // Copy Constructor
-    RationalNumberArray(const RationalNumberArray& r);
+    RationalNumberArray(RationalNumberArray &r);
 
     // Destructor
     ~RationalNumberArray();
