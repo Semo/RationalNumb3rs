@@ -57,17 +57,38 @@ RationalNumber RationalNumber::operator+(const RationalNumber &rightSide) const{
     return add(*this,rightSide);
 }
 
+RationalNumber RationalNumber::operator+(const int &rightSide) const{
+    RationalNumber r(rightSide,1);
+    return add(*this, r);
+}
+
 RationalNumber RationalNumber::operator-(const RationalNumber &rightSide) const{
     return sub(*this,rightSide);
+}
+
+RationalNumber RationalNumber::operator-(const int &rightSide) const{
+    RationalNumber r(rightSide,1);
+    return sub(*this, r);
 }
 
 RationalNumber RationalNumber::operator*(const RationalNumber &rightSide) const{
     return mult(*this,rightSide);
 }
 
+RationalNumber RationalNumber::operator*(const int &rightSide) const{
+    RationalNumber r(rightSide,1);
+    return mult(*this, r);
+}
+
 RationalNumber RationalNumber::operator/(const RationalNumber &rightSide) const{
     return div(*this,rightSide);
 }
+
+RationalNumber RationalNumber::operator/(const int &rightSide) const{
+    RationalNumber r(rightSide,1);
+    return div(*this, r);
+}
+
 
 RationalNumber RationalNumber::add(const RationalNumber &ls,const RationalNumber &rhs) const {
 
@@ -143,3 +164,7 @@ RationalNumber RationalNumber::operator-(){
     return RationalNumber(-nominator (),-denominator ());
 }
 
+RationalNumber::operator double() {
+    return double ((double)((this->nominator ())/ (double)(this->denominator ())));
+
+}

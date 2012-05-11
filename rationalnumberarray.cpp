@@ -94,10 +94,6 @@ void RationalNumberArray::add(const RationalNumber& rn){
   */
 
 void RationalNumberArray::resize(const unsigned int capacity){
-
-
-
-
     RationalNumber* rn_temp = new RationalNumber[capacity];
 
     //Set new Capacity

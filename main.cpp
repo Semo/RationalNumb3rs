@@ -18,6 +18,10 @@ int main()
     RationalNumber b (5,3);
     RationalNumber c(0,1), d(2,3), e(9,3), f(-4,2), g(17,3);
 
+    RationalNumber intTrNumPlus (11,3);
+    RationalNumber intTrNumMinus (-7,3);
+    RationalNumber intTrNumMult (6,3);
+    RationalNumber intTrNumDiv (2,9);
 
     RationalNumber testMe(40,17);
     RationalNumber testMeToo(-59,12);
@@ -40,6 +44,11 @@ int main()
     assert(b<=b);
     assert(a<=b);
 
+    //Assert operator overloading with ints
+    assert(a + 3 == intTrNumPlus);
+    assert(a - 3 == intTrNumMinus);
+    assert(a * 3 == intTrNumMult);
+    assert(a / 3 == intTrNumDiv);
 
     RationalNumber r_temp = ((d+d)/d);
     RationalNumber r = d+d-d;
@@ -69,24 +78,22 @@ int main()
     rna.insert (g,8);
     rna.print ();
 
+
     // Test another RationalNumber insert
     rna.insert (g,1);
     rna.print ();
+
+
 
     // Test call Default Constructor...
     RationalNumberArray rna_2 (rna);
 
 
-
-
-
-
-
-
-
     rna_2.print ();
 
 
+    double test = (double)a;
+    cout << test << endl;
 
     cout << "Fin" << endl;
 

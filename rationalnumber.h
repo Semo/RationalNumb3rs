@@ -24,6 +24,16 @@ public:
     RationalNumber operator*(const RationalNumber &rightSide) const;
     RationalNumber operator/(const RationalNumber &rightSide) const;
 
+    //Overrider für ints
+    RationalNumber operator+(const int &rightSide) const;
+    RationalNumber operator-(const int &rightSide) const;
+    RationalNumber operator*(const int &rightSide) const;
+    RationalNumber operator/(const int &rightSide) const;
+
+    // Type-Overloading
+    operator  double() ;
+
+
     RationalNumber add(const RationalNumber &lhs,const RationalNumber &rhs) const;
     RationalNumber sub(const RationalNumber &lhs,const RationalNumber &rhs) const;
     RationalNumber mult(const RationalNumber &lhs,const RationalNumber &rhs) const;
