@@ -2,6 +2,7 @@
 #include "rationalnumber.h"
 #include <assert.h>
 #include "rationalnumberarray.h"
+#include <cmath>
 
 using namespace std;
 using namespace rnum;
@@ -10,9 +11,9 @@ using namespace rnum;
 
 int main()
 {
-    cout << "Semo prod presentent:" << endl;
+    cout << "Welcom to the Test environment for RationalNumbers" << endl;
     cout << "Ladies and Gentleman..." << endl;
-    cout << "Start of the Assertions..." << endl;
+    cout << "Start the Assertions..." << endl;
 
     RationalNumber a (2,3);
     RationalNumber b (5,3);
@@ -94,11 +95,15 @@ int main()
     cout << "After: rna.m_capacity: " << rna.capacity ()<< endl;
     cout << "After: rna.m_size: " << rna.size ()<< endl;
 
-
     double test = (double)a;
     cout << test << endl;
 
     cout << "Fin" << endl;
+
+    float hij = 234.567;
+    RationalNumber bla = new RationalNumber();
+    bla.convertToRnum(hij);
+
 
     //Should never get here...
     return 0;

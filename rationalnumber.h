@@ -30,9 +30,12 @@ public:
     RationalNumber operator*(const int &rightSide) const;
     RationalNumber operator/(const int &rightSide) const;
 
-    // Type-Overloading
-    operator  double() ;
+    //Utilities
+    // RationalNumber floatToRnum(float f) const;
+    RationalNumber convertToRnum(float num);
 
+    // Type-Overloading
+    operator double() ;
 
     RationalNumber add(const RationalNumber &lhs,const RationalNumber &rhs) const;
     RationalNumber sub(const RationalNumber &lhs,const RationalNumber &rhs) const;
@@ -59,6 +62,7 @@ private:
 
     int gcd(int a, int b) const;
     int lcm(int n1, int n2) const;
+    float calculateDenominator(float num);
 };
 }
 

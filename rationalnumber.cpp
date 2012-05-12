@@ -1,6 +1,7 @@
 #include "rationalnumber.h"
 #include <iostream>
 #include <cstdlib>
+#include <cmath>
 
 using namespace std;
 using namespace rnum;
@@ -164,4 +165,30 @@ RationalNumber RationalNumber::operator-(){
 
 RationalNumber::operator double() {
     return double ((double) ((this->nominator ())/ (double)(this->denominator ())));
+}
+
+//RationalNumber RationalNumber::floatToRnum(float f) const{
+//    float trashBin, beforeDot;
+//    beforeDot = modf (f, &trashBin);
+//    RationalNumber r (f, 1000000);
+//    return r;
+//}
+
+float RationalNumber::calculateDenominator(float num) {
+    // get only decimal places.
+    float denom = num - (int) num;
+    // precision for decimal places to avoid infinite loops
+    if (abs(denom) < 0.00001) {
+        return 1;
+    }
+    // get the denominator by inverting num
+    num = 1/denom;
+    //recursive call
+    return num * calculateDenominator(num);
+}
+
+RationalNumber RationalNumber::convertToRnum(float num) {
+    // trace(Math.round(q*a)+"/"+Math.round(q));
+    float nom = calculateDenominator (num);
+    return RationalNumber (nom * num, nom);
 }
