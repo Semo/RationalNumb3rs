@@ -1,13 +1,29 @@
 #ifndef RATIONALNUMBER_H
 #define RATIONALNUMBER_H
 
+
+/**
+  * RationalNumber is a Program which handles RationalNumbers.
+  *
+  * @author Francois Dubois <siokdub@gmail.com>
+  * @author Sebastian Morkisch <semox78@gmail.com>
+  * @date 2012/05/15
+  * @version 1.0
+  *
+  * (C) All rights reserved. 2012
+  */
+
 namespace rnum {
 class RationalNumber {
+
+
 
 public:
 
     RationalNumber();
     RationalNumber(int nominator, int denominator);
+    RationalNumber(const int &value);
+    RationalNumber(const double &value);
     ~RationalNumber();
 
     // mutator
@@ -29,13 +45,25 @@ public:
     RationalNumber operator-(const int &rightSide) const;
     RationalNumber operator*(const int &rightSide) const;
     RationalNumber operator/(const int &rightSide) const;
+    void operator=(int &rightside);
+
+    //Overrider für doubles
+    RationalNumber operator+(const double &rightSide) const;
+    RationalNumber operator-(const double &rightSide) const;
+    RationalNumber operator*(const double &rightSide) const;
+    RationalNumber operator/(const double &rightSide) const;
+
+
+    void operator=(double rightside);
 
     //Utilities
-    // RationalNumber floatToRnum(float f) const;
-    RationalNumber convertToRnum(float num);
+    RationalNumber intToFrac(const int &value) const;
+    RationalNumber decToFrac(const double &value) const;
+    void print();
 
     // Type-Overloading
-    operator double() ;
+    //operator double() ;
+
 
     RationalNumber add(const RationalNumber &lhs,const RationalNumber &rhs) const;
     RationalNumber sub(const RationalNumber &lhs,const RationalNumber &rhs) const;
@@ -64,6 +92,17 @@ private:
     int lcm(int n1, int n2) const;
     float calculateDenominator(float num);
 };
+
+RationalNumber operator+(const double &leftSide, const RationalNumber &rightSide) ;
+RationalNumber operator-(const double &leftSide, const RationalNumber &rightSide) ;
+RationalNumber operator*(const double &leftSide, const RationalNumber &rightSide) ;
+RationalNumber operator/(const double &leftSide, const RationalNumber &rightSide) ;
+
+RationalNumber operator+(const int &leftSide, const RationalNumber &rightSide) ;
+RationalNumber operator-(const int &leftSide, const RationalNumber &rightSide) ;
+RationalNumber operator*(const int &leftSide, const RationalNumber &rightSide) ;
+RationalNumber operator/(const int &leftSide, const RationalNumber &rightSide) ;
+
 }
 
 #endif // RATIONALNUMBER_H

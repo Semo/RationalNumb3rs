@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
+#include <limits>
 
 using namespace std;
 using namespace rnum;
@@ -10,6 +11,19 @@ RationalNumber::RationalNumber(int nominator, int denominator): m_nominator(nomi
 }
 
 RationalNumber::RationalNumber() {}
+
+RationalNumber::RationalNumber(const int &value) {
+    RationalNumber r = intToFrac(value);
+    m_nominator = r.nominator();
+    m_denominator = r.denominator();
+}
+
+RationalNumber::RationalNumber(const double &value) {
+    RationalNumber r = decToFrac(value);
+    m_nominator = r.nominator();
+    m_denominator = r.denominator();
+}
+
 
 RationalNumber::~RationalNumber(){}
 
@@ -52,42 +66,130 @@ int RationalNumber::lcm (int a, int b) const {
     return (a * b) / this->gcd(a, b);
 }
 
+/*########## Operator overloading for RationalNumbers #######################*/
+
 RationalNumber RationalNumber::operator+(const RationalNumber &rightSide) const{
-    return add(*this,rightSide);
+    return add(*this, rightSide);
 }
 
-RationalNumber RationalNumber::operator+(const int &rightSide) const{
-    RationalNumber r(rightSide,1);
-    return add(*this, r);
-}
 
 RationalNumber RationalNumber::operator-(const RationalNumber &rightSide) const{
-    return sub(*this,rightSide);
-}
-
-RationalNumber RationalNumber::operator-(const int &rightSide) const{
-    RationalNumber r(rightSide,1);
-    return sub(*this, r);
+    return sub(*this, rightSide);
 }
 
 RationalNumber RationalNumber::operator*(const RationalNumber &rightSide) const{
-    return mult(*this,rightSide);
+    return mult(*this, rightSide);
 }
 
+
+RationalNumber RationalNumber::operator/(const RationalNumber &rightSide) const{
+    return div(*this, rightSide);
+}
+
+
+/*########## Operator overloading for int values #######################*/
+
+
+RationalNumber RationalNumber::operator+(const int &rightSide) const{
+    RationalNumber r = intToFrac (rightSide);
+    return add(*this, r);
+}
+
+RationalNumber RationalNumber::operator-(const int &rightSide) const{
+    RationalNumber r = intToFrac (rightSide);
+    return sub(*this, r);
+}
+
+
 RationalNumber RationalNumber::operator*(const int &rightSide) const{
-    RationalNumber r(rightSide,1);
+    RationalNumber r = intToFrac (rightSide);
     return mult(*this, r);
 }
 
-RationalNumber RationalNumber::operator/(const RationalNumber &rightSide) const{
-    return div(*this,rightSide);
-}
 
 RationalNumber RationalNumber::operator/(const int &rightSide) const{
-    RationalNumber r(rightSide,1);
+    RationalNumber r = intToFrac (rightSide);
     return div(*this, r);
 }
 
+void RationalNumber::operator=(int &rightSide)  {
+    RationalNumber r = intToFrac (rightSide);
+    m_nominator = r.nominator();
+    m_denominator = r.denominator();
+}
+
+
+/*########## Operator overloading for doubles values #######################*/
+
+RationalNumber RationalNumber::operator+(const double &rightSide) const{
+    RationalNumber r = this->decToFrac(rightSide);
+    return add(*this, r);
+}
+
+RationalNumber RationalNumber::operator-(const double &rightSide) const{
+    RationalNumber r = this->decToFrac(rightSide);
+    return sub(*this, r);
+}
+
+RationalNumber RationalNumber::operator*(const double &rightSide) const{
+    RationalNumber r = this->decToFrac(rightSide);
+    return mult(*this, r);
+}
+
+RationalNumber RationalNumber::operator/(const double &rightSide) const{
+    RationalNumber r = this->decToFrac(rightSide);
+    return div(*this, r);
+}
+
+void RationalNumber::operator=(double rightSide)  {
+    RationalNumber r = r.decToFrac (rightSide);
+    m_nominator = r.nominator();
+    m_denominator = r.denominator();
+}
+
+
+RationalNumber rnum::operator+(const double &leftSide, const RationalNumber &rightSide)  {
+    RationalNumber r (leftSide);
+    return r + rightSide;
+}
+
+RationalNumber rnum::operator-(const double &leftSide, const RationalNumber &rightSide)  {
+    RationalNumber r (leftSide);
+    return r - rightSide;
+}
+
+RationalNumber rnum::operator*(const double &leftSide, const RationalNumber &rightSide)  {
+    RationalNumber r (leftSide);
+    return r * rightSide;
+}
+RationalNumber rnum::operator/(const double &leftSide, const RationalNumber &rightSide)  {
+    RationalNumber r (leftSide);
+    return r / rightSide;
+}
+
+
+RationalNumber rnum::operator+(const int &leftSide, const RationalNumber &rightSide)  {
+    RationalNumber r (leftSide);
+    return r + rightSide;
+}
+
+RationalNumber rnum::operator-(const int &leftSide, const RationalNumber &rightSide)  {
+    RationalNumber r (leftSide);
+    return r - rightSide;
+}
+
+RationalNumber rnum::operator*(const int &leftSide, const RationalNumber &rightSide)  {
+    RationalNumber r (leftSide);
+    return r * rightSide;
+}
+
+RationalNumber rnum::operator/(const int &leftSide, const RationalNumber &rightSide)  {
+    RationalNumber r (leftSide);
+    return r / rightSide;
+}
+
+
+/*###############################################################################################*/
 
 RationalNumber RationalNumber::add(const RationalNumber &ls,const RationalNumber &rhs) const {
 
@@ -98,8 +200,8 @@ RationalNumber RationalNumber::add(const RationalNumber &ls,const RationalNumber
 
     return RationalNumber (r.m_nominator/pirates, r.m_denominator/pirates);
 }
-RationalNumber RationalNumber::sub(const RationalNumber &ls,const RationalNumber &rhs) const {
 
+RationalNumber RationalNumber::sub(const RationalNumber &ls,const RationalNumber &rhs) const {
     RationalNumber r_1  (ls.m_nominator * rhs.m_denominator, ls.m_denominator * rhs.m_denominator);
     RationalNumber r_2  (rhs.m_nominator * ls.m_denominator, ls.m_denominator * rhs.m_denominator);
     RationalNumber r  (r_1.m_nominator - r_2.m_nominator, ls.m_denominator * rhs.m_denominator);
@@ -107,13 +209,13 @@ RationalNumber RationalNumber::sub(const RationalNumber &ls,const RationalNumber
 
     return RationalNumber (r.m_nominator/pirates, r.m_denominator/pirates);
 }
-RationalNumber RationalNumber::mult(const RationalNumber &ls,const RationalNumber &rhs) const {
 
+RationalNumber RationalNumber::mult(const RationalNumber &ls,const RationalNumber &rhs) const {
     RationalNumber r (ls.m_nominator * rhs.m_nominator, ls.m_denominator * rhs.m_denominator);
     return r;
 }
-RationalNumber RationalNumber::div(const RationalNumber &ls,const RationalNumber &rhs) const {
 
+RationalNumber RationalNumber::div(const RationalNumber &ls,const RationalNumber &rhs) const {
     RationalNumber r (ls.m_nominator * rhs.m_denominator, ls.m_denominator * rhs.m_nominator);
     return r;
 }
@@ -163,32 +265,43 @@ RationalNumber RationalNumber::operator-(){
     return RationalNumber(-nominator (),-denominator ());
 }
 
-RationalNumber::operator double() {
-    return double ((double) ((this->nominator ())/ (double)(this->denominator ())));
-}
-
-//RationalNumber RationalNumber::floatToRnum(float f) const{
-//    float trashBin, beforeDot;
-//    beforeDot = modf (f, &trashBin);
-//    RationalNumber r (f, 1000000);
-//    return r;
+//RationalNumber::operator double() {
+//    return double ((double) ((this->nominator ())/ (double)(this->denominator ())));
 //}
 
-float RationalNumber::calculateDenominator(float num) {
-    // get only decimal places.
-    float denom = num - (int) num;
-    // precision for decimal places to avoid infinite loops
-    if (abs(denom) < 0.00001) {
-        return 1;
-    }
-    // get the denominator by inverting num
-    num = 1/denom;
-    //recursive call
-    return num * calculateDenominator(num);
+RationalNumber RationalNumber::intToFrac(const int &value) const {
+    return RationalNumber (value, 1);
 }
 
-RationalNumber RationalNumber::convertToRnum(float num) {
-    // trace(Math.round(q*a)+"/"+Math.round(q));
-    float nom = calculateDenominator (num);
-    return RationalNumber (nom * num, nom);
+
+RationalNumber RationalNumber::decToFrac(const double &value) const{
+
+    double delta;
+    long nominator;
+    long denominator;
+    double intpart;
+    double epsilon =0.00001;
+
+    modf(value,&intpart);
+
+    nominator =intpart;
+    denominator =1;
+
+    delta = (double)nominator/(double)denominator;
+
+    while(!fabs(delta-value) < epsilon) {
+        if((delta-value) < epsilon) {
+            nominator +=1;
+        } else {
+            denominator +=1;
+            nominator = value * denominator;
+        }
+        delta = (double)nominator/(double)denominator;
+
+    }
+    return RationalNumber(nominator,denominator);
+}
+
+void RationalNumber::print() {
+    cout << "{" << nominator() << "/" << denominator() << "}" <<  endl;
 }
