@@ -8,5 +8,6 @@ SOURCES += main.cpp \
 
 HEADERS += \
     rationalnumberarray.h \
-    rationalnumber.h
+    rationalnumber.h \
+    exception.h
 

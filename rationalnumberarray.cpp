@@ -2,10 +2,11 @@
 #include "rationalnumber.h"
 #include <cstdlib>
 #include <assert.h>
+#include <exception.h>
 
 using namespace rnum;
 using namespace std;
-
+using namespace exceptions;
 
 /**
   * The Default-Constructor starts to construct an Object with space for 12 elements.
@@ -34,7 +35,7 @@ RationalNumberArray::~RationalNumberArray(){
   * Copy Constructor skilled in deep-Copy. :-)
   */
 RationalNumberArray::RationalNumberArray(RationalNumberArray &r){
-   createCopy(r);
+  createCopy(r);
 }
 
 /**
@@ -55,9 +56,13 @@ unsigned int RationalNumberArray::capacity(){
   * Removes RationalNumbers regarding the correct order in a RationalNumberArray.
   */
 void RationalNumberArray::remove(const unsigned int from, const unsigned int to){
+  if(to < from) {
+      throw Exception("InvalidSequence");
+    }
   if (from < to) {
       if(!(to <= this->size ())){
-          cout << "index out of bounds" << endl;
+          throw Exception("IndexOutOfBounds");
+
         } else {
           int offset = to - from;
           for (unsigned int i = from; i <= this->size(); ++i) {
@@ -68,6 +73,7 @@ void RationalNumberArray::remove(const unsigned int from, const unsigned int to)
           this->m_size -= offset;
         }
     }
+
 }
 
 /**
@@ -105,14 +111,14 @@ void RationalNumberArray::resize(const unsigned int capacity){
 
 }
 
-  /**
+/**
   * Gets a RationalNumber specified by Index
   */
 RationalNumber RationalNumberArray::getRationalNumber(const unsigned int index){
   return this->m_rn[index];
 }
 
- /**
+/**
   * Inserts a RationalNumber element at position called index.
   */
 void RationalNumberArray::insert(const RationalNumber& rn, const unsigned int index){
@@ -136,10 +142,9 @@ void RationalNumberArray::insert(const RationalNumber& rn, const unsigned int in
       this->m_rn[index] = rn;
     }
   this->m_size += 1;
-
 }
 
-  /**
+/**
    *Prints beautified RationalNumbers containes in the RationalNumberArray.
    */
 void RationalNumberArray::print(){
@@ -152,23 +157,24 @@ void RationalNumberArray::print(){
 }
 
 RationalNumber& RationalNumberArray::operator[] (const unsigned int index) {
-    assert(index < size());
-    return m_rn[index];
+  if (index > size ()) {
+      throw Exception("IndexOutOfBounds");
+  }
+  return m_rn[index];
 }
 
 void RationalNumberArray::operator=(RationalNumberArray &rightSide) {
-    delete[] m_rn;
-    createCopy(rightSide);
+  delete[] m_rn;
+  createCopy(rightSide);
 }
 
 void RationalNumberArray::createCopy(RationalNumberArray &r) {
+  m_rn = new RationalNumber[r.capacity()];
+  this->m_size = r.size();
+  this->m_capacity = r.capacity();
 
-    m_rn = new RationalNumber[r.capacity()];
-    this->m_size = r.size();
-    this->m_capacity = r.capacity();
-
-    for (unsigned int i = 0; i < m_size; ++i) {
-        this->m_rn[i] = r.m_rn[i];
+  for (unsigned int i = 0; i < m_size; ++i) {
+      this->m_rn[i] = r.m_rn[i];
     }
 
 }

@@ -5,180 +5,201 @@
 #include "math.h"
 #include <string>
 #include <limits>
+#include <exception.h>
 
 
 using namespace std;
 using namespace rnum;
-
+using namespace exceptions;
 
 
 int main()
 {
-    cout << "Ladies and Gentleman..." << endl;
-    cout << "Start of the Assertions..." << endl;
+  cout << "Ladies and Gentleman..." << endl;
+  cout << "Start of the Assertions..." << endl;
 
-    RationalNumber a (2,3), b (5,3), c(0,1), d(2,3), e(9,3), f(-4,2), g(17,3);
+  RationalNumber a (2,3), b (5,3), c(0,1), d(2,3), e(9,3), f(-4,2), g(17,3);
 
-    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    cout << "RationalNumbers: Add, Sub, Mul, Div" << endl;
-
-
-    // RationalNumber operation Solutions
-    RationalNumber r1 (7,3);
-    RationalNumber r2 (-3,3);
-    RationalNumber r3 (10,9);
-    RationalNumber r4 (2,5);
-
-    assert(r1 == a+b);
-    assert(r2 == a-b);
-    assert(r3 == a*b);
-    assert(r4 == a/b);
+  /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+  cout << "RationalNumbers: Add, Sub, Mul, Div" << endl;
 
 
-    RationalNumber intTrNumPlus (11,3);
-    RationalNumber intTrNumMinus (-7,3);
-    RationalNumber intTrNumMult (6,3);
-    RationalNumber intTrNumDiv (2,9);
+  // RationalNumber operation Solutions
+  RationalNumber r1 (7,3);
+  RationalNumber r2 (-3,3);
+  RationalNumber r3 (10,9);
+  RationalNumber r4 (2,5);
 
-    //Assert operator overloading with ints
-    assert(a + 3 == intTrNumPlus);
-    assert(a - 3 == intTrNumMinus);
-    assert(a * 3 == intTrNumMult);
-    assert(a / 3 == intTrNumDiv);
-
-    RationalNumber doubleTrNumPlus(75233,18750);
-    RationalNumber doubleTrNumMinus (-50233,18750);
-    RationalNumber doubleTrNumMult (20911,9375);
-    RationalNumber doubleTrNumDiv (12500,62733);
-
-    //Assert operator overloading with doubles
-    assert(a + 3.34576 == doubleTrNumPlus);
-    assert(a - 3.34576 == doubleTrNumMinus);
-    assert(a * 3.34576 == doubleTrNumMult);
-    assert(a / 3.34576 == doubleTrNumDiv);
-
-    // Given complex assertions
-    RationalNumber solution(40,17);
-    assert(c + d * e - f / g == solution);
-    RationalNumber z(4, -2);
-    assert(-f == z);
-
-    cout << "Success!\n" << endl;
-    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    cout << "RationalNumbers: Conversions Double --> Rnum, Integer --> Rnum" << endl;
-
-    double d_a = 2342.456742;
-    RationalNumber rn_converted = rn_converted.decToFrac (d_a);
-    cout << "Double representation of number: " << d_a << endl;
-    rn_converted.print ();
+  assert(r1 == a+b);
+  assert(r2 == a-b);
+  assert(r3 == a*b);
+  assert(r4 == a/b);
 
 
+  RationalNumber intTrNumPlus (11,3);
+  RationalNumber intTrNumMinus (-7,3);
+  RationalNumber intTrNumMult (6,3);
+  RationalNumber intTrNumDiv (2,9);
 
-    cout << "Success!\n" << endl;
-    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    cout << "RationalNumbers: <, >, >=, <=" << endl;
-    assert(b > a);
-    assert(b >= b);
-    assert(b >= a);
-    assert(a <= b);
-    assert(b <= b);
+  //Assert operator overloading with ints
+  assert(a + 3 == intTrNumPlus);
+  assert(a - 3 == intTrNumMinus);
+  assert(a * 3 == intTrNumMult);
+  assert(a / 3 == intTrNumDiv);
 
-    cout << "Success!\n" << endl;
-    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-    cout << "RationalNumberArray: Create, Copy, Resize, Destroy, Add, Remove, " <<
-            "Insert, Delete, Assign, Read/Write Index" << endl;
+  RationalNumber doubleTrNumPlus(75233,18750);
+  RationalNumber doubleTrNumMinus (-50233,18750);
+  RationalNumber doubleTrNumMult (20911,9375);
+  RationalNumber doubleTrNumDiv (12500,62733);
 
-    // create rna
-    cout << "testing whether RationalNumberArray adds RationalNumbers..." << endl;
-    RationalNumberArray rna_a (2);
-    rna_a.add (a);
-    rna_a.add (b);
-    rna_a.add (c);
-    rna_a.add (d);
-    rna_a.print ();
-    cout << "Complete\n" << endl;
+  //Assert operator overloading with doubles
+  assert(a + 3.34576 == doubleTrNumPlus);
+  assert(a - 3.34576 == doubleTrNumMinus);
+  assert(a * 3.34576 == doubleTrNumMult);
+  assert(a / 3.34576 == doubleTrNumDiv);
 
-    cout << "testing whether RationalNumberArray removes RationalNumbers..." << endl;
-    rna_a.remove (0,2);
-    rna_a.print ();
-    cout << "Complete\n" << endl;
+  // Given complex assertions
+  RationalNumber solution(40,17);
+  assert(c + d * e - f / g == solution);
+  RationalNumber z(4, -2);
+  assert(-f == z);
 
-    cout << "testing whether RationalNumberArray inserts a RationalNumber..." << endl;
-    // Test RationalNumber insert
-    rna_a.insert (g,7);
-    rna_a.print ();
+  cout << "Success!\n" << endl;
+  /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+  cout << "RationalNumbers: Conversions Double --> Rnum, Integer --> Rnum" << endl;
 
-    cout << "testing copy constructor and destructor..." << endl;
-    // Test call Default Constructor...
-    RationalNumberArray rna_b (rna_a);
-    rna_b.print ();
-    cout << "Complete\n" << endl;
+  double d_a = 2342.456742;
+  RationalNumber rn_converted = rn_converted.decToFrac (d_a);
+  cout << "Double representation of number: " << d_a << endl;
+  rn_converted.print ();
 
 
-    // Test Assignment ops
-    RationalNumberArray rna_c;
-    rna_c.add (c);
-    rna_c.add (d);
-    cout << "Before assign" << endl;
-    rna_c.print ();
 
-    rna_c = rna_a;
-    cout << "After assign" << endl;
-    rna_c.print ();
-    cout << "Complete\n" << endl;
+  cout << "Success!\n" << endl;
+  /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+  cout << "RationalNumbers: <, >, >=, <=" << endl;
+  assert(b > a);
+  assert(b >= b);
+  assert(b >= a);
+  assert(a <= b);
+  assert(b <= b);
+
+  cout << "Success!\n" << endl;
+  /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+  cout << "RationalNumberArray: Create, Copy, Resize, Destroy, Add, Remove, " <<
+          "Insert, Delete, Assign, Read/Write Index" << endl;
+
+  // create rna
+  cout << "testing whether RationalNumberArray adds RationalNumbers..." << endl;
+  RationalNumberArray rna_a (2);
+  rna_a.add (a);
+  rna_a.add (b);
+  rna_a.add (c);
+  rna_a.add (d);
+  rna_a.print ();
+  cout << "Complete\n" << endl;
+
+  cout << "testing whether RationalNumberArray removes RationalNumbers..." << endl;
+  rna_a.remove (0,2);
+  rna_a.print ();
+  cout << "Complete\n" << endl;
+
+  cout << "testing whether RationalNumberArray inserts a RationalNumber..." << endl;
+  // Test RationalNumber insert
+  rna_a.insert (g,7);
+  rna_a.print ();
+
+  cout << "testing copy constructor and destructor..." << endl;
+  // Test call Default Constructor...
+  RationalNumberArray rna_b (rna_a);
+  rna_b.print ();
+  cout << "Complete\n" << endl;
 
 
-    // Write rnum to index
-    rna_c[0] = d;
-    rna_c.print ();
+  // Test Assignment ops
+  RationalNumberArray rna_c;
+  rna_c.add (c);
+  rna_c.add (d);
+  cout << "Before assign" << endl;
+  rna_c.print ();
 
-    // Read rnum from index
-    rna_c[7].print ();
-
-
-    // Given stuff
-    int i = 5, j = 4;
-    RationalNumber aa(1,2), bb(7,3);
-
-    RationalNumber aaa = i * aa, bbb = bb / j;
-    RationalNumber ia (i);
-    RationalNumber ja = j;
-    cout <<"-------" << endl;
-    aaa.print();
-    bbb.print();
-    ia.print();
-    ja.print();
+  rna_c = rna_a;
+  cout << "After assign" << endl;
+  rna_c.print ();
+  cout << "Complete\n" << endl;
 
 
-    cout << "Success!\n" << endl;
-    /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+  // Write rnum to index
+  rna_c[0] = d;
+  rna_c.print ();
 
-    // double test = (double)a;
-    // cout << test << endl;
+  // Read rnum from index
+  rna_c[7].print ();
 
-    //++++++++++++++++++
 
-    cout << "The min value for double epsilon is:  "
-         << numeric_limits<double>::epsilon( )
-         << endl;
-    cout << "The min value for long epsilon is:  "
-         << numeric_limits<long>::epsilon( )
-         << endl;
-    cout << "The maximum value for type long is:  "
-         << numeric_limits<long>::max( )
-         << endl;
-    cout << "The maximum value for type double is:  "
-         << numeric_limits<double>::max( )
-         << endl;
+  // Given stuff
+  int i = 5, j = 4;
+  RationalNumber aa(1,2), bb(7,3);
 
-    //  double dd = 0.99999999;
+  RationalNumber aaa = i * aa, bbb = bb / j;
+  RationalNumber ia (i);
+  RationalNumber ja = j;
+  cout <<"-------" << endl;
+  aaa.print();
+  bbb.print();
+  ia.print();
+  ja.print();
 
-    //  RationalNumber ab = ab.decToFrac (dd);
-    //  ab.print ();
-    //******************
 
-    cout << "Fin" << endl;
+  cout << "Success!\n" << endl;
+  /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-    //Should never get here...
-    return 0;
+  //TEst Exceptions
+
+  //rna_a Index out of Bounds --> remove
+  try {
+    rna_a.remove (1, 1000);
+  } catch (Exception ex) {
+    cout << ex.getMessage() << endl;
+  }
+
+  //rna_a Invalid Seq --> remove
+  try {
+    rna_a.remove (10, 5);
+  } catch (Exception ex) {
+    cout << ex.getMessage() << endl;
+  }
+
+  //rna_a Index out of Bounds --> index operator overload
+  try {
+    rna_a[100] = c;
+  } catch (Exception ex) {
+    cout << ex.getMessage() << endl;
+  }
+
+
+  // double test = (double)a;
+  // cout << test << endl;
+
+  //++++++++++++++++++
+
+  cout << "The min value for double epsilon is:  "
+       << numeric_limits<double>::epsilon( )
+       << endl;
+  cout << "The min value for long epsilon is:  "
+       << numeric_limits<long>::epsilon( )
+       << endl;
+  cout << "The maximum value for type long is:  "
+       << numeric_limits<long>::max( )
+       << endl;
+  cout << "The maximum value for type double is:  "
+       << numeric_limits<double>::max( )
+       << endl;
+
+  //******************
+
+  cout << "Fin" << endl;
+
+  //Should never get here...
+  return 0;
 }
