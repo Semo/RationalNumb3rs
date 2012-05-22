@@ -10,14 +10,6 @@ using namespace rnum;
 RationalNumber::RationalNumber(int nominator, int denominator): m_nominator(nominator),m_denominator(denominator) {
 }
 
-RationalNumber::RationalNumber() {}
-
-RationalNumber::RationalNumber(const int &value) {
-    RationalNumber r = intToFrac(value);
-    m_nominator = r.nominator();
-    m_denominator = r.denominator();
-}
-
 RationalNumber::RationalNumber(const double &value) {
     RationalNumber r = decToFrac(value);
     m_nominator = r.nominator();

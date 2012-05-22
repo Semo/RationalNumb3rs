@@ -46,7 +46,7 @@ namespace rnum {
     /**
       * Get amount of elements contained in a List
       */
-    unsigned int size();
+    unsigned int size() const;
 
     /**
       * Returns the possible amount of RationalNumbers which can be stored inside.
@@ -108,6 +108,8 @@ namespace rnum {
       * @param unsigned int index
       */
     RationalNumber& operator[] (const unsigned int index);
+
+    const RationalNumber& operator[] (const unsigned int index) const;
 
   private:
     // used to initialize the array with a default value of 12.

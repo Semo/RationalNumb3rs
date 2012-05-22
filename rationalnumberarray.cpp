@@ -41,7 +41,7 @@ RationalNumberArray::RationalNumberArray(RationalNumberArray &r){
 /**
   * Return the amount of RationalNumbers a RationalNumberArray contains.
   */
-unsigned int RationalNumberArray::size(){
+unsigned int RationalNumberArray::size() const {
   return this->m_size;
 }
 
@@ -162,6 +162,14 @@ RationalNumber& RationalNumberArray::operator[] (const unsigned int index) {
   }
   return m_rn[index];
 }
+
+const RationalNumber& RationalNumberArray::operator[] (const unsigned int index) const {
+  if (index > size ()) {
+      throw Exception("IndexOutOfBounds");
+  }
+  return m_rn[index];
+}
+
 
 void RationalNumberArray::operator=(RationalNumberArray &rightSide) {
   delete[] m_rn;

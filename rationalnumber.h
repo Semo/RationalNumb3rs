@@ -20,9 +20,8 @@ class RationalNumber {
 
 public:
 
-    RationalNumber();
-    RationalNumber(int nominator, int denominator);
-    RationalNumber(const int &value);
+    RationalNumber(int nominator = 0, int denominator = 1);
+//   RationalNumber(const int &value);
     RationalNumber(const double &value);
     ~RationalNumber();
 
